@@ -4,4 +4,3 @@ node_modules/
 # Ignore environment file
 .env
 
-# You can add other patterns to ignore here

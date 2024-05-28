@@ -103,8 +103,7 @@ function data_process() // Writes to cache
     } catch (error) {
       console.error('Error fetching data:', error);
     }
-    war_check(Offensive_war_count);
-    //write_to_cache(Defensive_war_count);
+    war_check(Defensive_war_count);
   })();
 }
 
@@ -124,7 +123,7 @@ function war_check(current_defensive_count) // Checks if there is a new war
         if (current_defensive_count > cached_defensiveWars ) // Correct symbol = > (Bigger than)
           {
             // If current is larger than cached
-            //send_notification(title="War Declared", message="War has been declared against you")
+            send_notification(title="War Declared", message="War has been declared against you")
             jsonData["Defensive_Wars"] = current_defensive_count;
             writeModifiedData(jsonData)
           }
@@ -134,7 +133,6 @@ function war_check(current_defensive_count) // Checks if there is a new war
     }
   });
 }
-
 
 function writeModifiedData(data) { // Writes appended data to war_cache.json
   const jsonString = JSON.stringify(data, null, 2); // Stringify with indentation
@@ -163,6 +161,10 @@ function timer()
 }, 3000); // 3 seconds
 }
 
-//notifier.notify('PNW: Shield Activated');
+notifier.notify(
+  {
+    title: 'Shield Script Activated',
+    message: 'Shield Active',
+  })
 
 timer()
